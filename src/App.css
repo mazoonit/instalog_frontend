@@ -1,8 +1,4 @@
-@font-face {
-  font-family: "roboto";
-  src: url("/public/roboto.ttf");
-}
-
+@import url("https://fonts.googleapis.com/css?family=Inter");
 * {
   box-sizing: border-box;
 }
@@ -17,7 +13,7 @@ body,
 body {
   background: #fff;
   position: fixed;
-  font-family: "roboto";
+  font-family: "Inter";
 }
 
 :root {
@@ -39,7 +35,7 @@ body {
   align-content: center;
   justify-content: center;
   z-index: 100000;
-  font-family: "roboto";
+  font-family: "Inter";
 }
 
 .loader__element {

@@ -1,0 +1,51 @@
+export const rows = [
+  {
+    email: "ali@instatus.com",
+    name: "aka",
+    actionName: "user.login_succeed",
+    action: { id: 1, name: "aaa.aaa" },
+    actor: { id: 1, name: "Ali", email: "mo" },
+    target: { id: 1, name: "target" },
+    occured_at: "2022-10-03T10:15:42.719Z",
+    location: "105.40.62.95",
+    group: { id: 1, name: "instatus" },
+    meta_data: {
+      redirect: "/setup",
+      description: "User login succeeded.",
+      x_request_id: "req_W1Y13QOHMI5H",
+    },
+  },
+  {
+    email: "bli@instatus.com",
+    name: "aka",
+    actionName: "user.login_succeed",
+    actor: { id: 1, name: "Ali", email: "mo" },
+    target: { id: 1, name: "target" },
+    occured_at: "2022-10-03T10:15:42.719Z",
+    location: "105.40.62.95",
+    action: { id: 1, name: "aaa.aaa" },
+    group: { id: 1, name: "instatus" },
+    meta_data: {
+      redirect: "/setup",
+      description: "User login succeeded.",
+      x_request_id: "req_W1Y13QOHMI5H",
+    },
+  },
+  {
+    email: "oli@instatus.com",
+    name: "aka",
+    actionName: "user.login_succeed",
+    action: { id: 1, name: "aaa.aaa" },
+
+    actor: { id: 1, name: "Ali", email: "mo" },
+    target: { id: 1, name: "target" },
+    occured_at: "2022-10-03T10:15:42.719Z",
+    location: "105.40.62.95",
+    group: { id: 1, name: "instatus" },
+    meta_data: {
+      redirect: "/setup",
+      description: "User login succeeded.",
+      x_request_id: "req_W1Y13QOHMI5H",
+    },
+  },
+];

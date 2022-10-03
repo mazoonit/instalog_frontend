@@ -2,22 +2,40 @@ import React, { useRef, useState, useEffect, useReducer } from "react";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "./App.css";
 import InstatusTable from "../src/components/instatus_table/InstatusTable";
+import LetterCircle from "./components/generic_components/LetterCircle";
+import DetailsComponent from "./components/instalog/DetailsComponent";
+import {rows} from "./dumpData/dump";
 
 function App() {
-  const DetailsComponent = (row) => {
-    return (
-      <dev>
-        <p>Hola</p>
-      </dev>
-    );
-  };
   return (
     <>
       <InstatusTable
         headers={["ACTOR", "ACTION", "DATE"]}
         columns={[
           {
-            key: "email",
+            key: "icon",
+            CustomComponent: (row) => {
+              return (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    width: "33.333%",
+                  }}
+                >
+                  <LetterCircle letter={row.email[0]} />
+                  <p
+                    style={{
+                      margin: 0,
+                      marginLeft: "10px",
+                      alignSelf: "center",
+                    }}
+                  >
+                    {row.email}
+                  </p>
+                </div>
+              );
+            },
           },
           {
             key: "actionName",
@@ -29,57 +47,10 @@ function App() {
             },
           },
         ]}
-        rows={[
-          {
-            email: "ali@instatus.com",
-            name: "aka",
-
-            actor: { id: 1, name: "Ali", email: "mo" },
-            target: { id: 1, name: "target" },
-            occured_at: "2022-10-03T10:15:42.719Z",
-            location: "105.40.62.95",
-            group: { id: 1, name: "instatus" },
-            meta_data: {
-              redirect: "/setup",
-              description: "User login succeeded.",
-              x_request_id: "req_W1Y13QOHMI5H",
-            },
-          },
-          {
-            email: "ali@instatus.com",
-            name: "aka",
-
-            actor: { id: 1, name: "Ali", email: "mo" },
-            target: { id: 1, name: "target" },
-            occured_at: "2022-10-03T10:15:42.719Z",
-            location: "105.40.62.95",
-            group: { id: 1, name: "instatus" },
-            meta_data: {
-              redirect: "/setup",
-              description: "User login succeeded.",
-              x_request_id: "req_W1Y13QOHMI5H",
-            },
-          },
-          {
-            email: "ali@instatus.com",
-            name: "aka",
-
-            actor: { id: 1, name: "Ali", email: "mo" },
-            target: { id: 1, name: "target" },
-            occured_at: "2022-10-03T10:15:42.719Z",
-            location: "105.40.62.95",
-            group: { id: 1, name: "instatus" },
-            meta_data: {
-              redirect: "/setup",
-              description: "User login succeeded.",
-              x_request_id: "req_W1Y13QOHMI5H",
-            },
-          },
-        ]}
+        rows={rows}
         DetailsComponent={DetailsComponent}
       />
     </>
   );
 }
-
 export default App;
