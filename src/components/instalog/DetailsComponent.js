@@ -1,4 +1,7 @@
-const TitledAttribute = ({ title, value }) => {
+const TitledAttribute = ({ title, value,fontSize }) => {
+  if(!fontSize){
+    fontSize="13px";
+  }
   return (
     <dev>
       <p
@@ -11,7 +14,7 @@ const TitledAttribute = ({ title, value }) => {
       >
         {title}
       </p>
-      <p style={{ display: "inline-block" }}> {value}</p>
+      <p style={{ display: "inline-block",fontSize:fontSize }}> {value}</p>
     </dev>
   );
 };
@@ -36,19 +39,39 @@ export default function DetailsComponent({ row }) {
     >
       <dev style={{ display: "flex", flexDirection: "column", width: "33%" }}>
         <Title title="ACTOR" />
-        <TitledAttribute title={"Name"} value={row.name} />
-        <TitledAttribute title={"Email"} value={row.email} />
-        <TitledAttribute title={"ID"} value={row.id} />
+        <TitledAttribute
+          title={"Name"}
+          value={row.actor ? row.actor.name : null}
+        />
+        <TitledAttribute
+          title={"Email"}
+          value={row.actor ? row.actor.email : row.actor.email}
+        />
+        <TitledAttribute
+          title={"ID"}
+          fontSize={"10px"}
+          value={row.actor ? row.actor.id : null}
+        />
       </dev>
       <dev style={{ display: "flex", flexDirection: "column", width: "33%" }}>
         <Title title="ACTION" />
-        <TitledAttribute title={"Name"} value={row.action.name} />
+        <TitledAttribute
+          title={"Name"}
+          value={row.action ? row.action.name : null}
+        />
         <TitledAttribute title={"Object"} value={"event_action"} />
-        <TitledAttribute title={"ID"} value={row.action.id} />
+        <TitledAttribute
+          title={"ID"}
+          value={row.action ? row.action.id : null}
+          fontSize={"10px"}
+        />
       </dev>
       <dev style={{ display: "flex", flexDirection: "column", width: "33%" }}>
         <Title title="DATE" />
-        <TitledAttribute title={"DATE"} value={row.occured_at.split("T")[0]} />
+        <TitledAttribute
+          title={"DATE"}
+          value={row.occurred_at ? row.occurred_at.split("T")[0] : null}
+        />
       </dev>
       <dev style={{ display: "flex", flexDirection: "column", width: "33%" }}>
         <Title title="METADATA" />

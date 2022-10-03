@@ -4,9 +4,24 @@ import "./App.css";
 import InstatusTable from "../src/components/instatus_table/InstatusTable";
 import LetterCircle from "./components/generic_components/LetterCircle";
 import DetailsComponent from "./components/instalog/DetailsComponent";
-import {rows} from "./dumpData/dump";
+import { rows } from "./dumpData/dump";
+import API from "./utilities/api";
 
 function App() {
+  const [fetchedRows, setFetchedRows] = useState([]);
+  useEffect(() => {
+    const fetch = async () => {
+      let res = await API.post("/events/fetch");
+      if (res.data) {
+        res.data.map((row) => {
+          row.email = row.actor ? row.actor.email : null;
+          row.actionName = row.action ? row.action.name : null;
+        });
+      }
+      setFetchedRows(res.data);
+    };
+    fetch();
+  }, []);
   return (
     <>
       <InstatusTable
@@ -23,7 +38,7 @@ function App() {
                     width: "33.333%",
                   }}
                 >
-                  <LetterCircle letter={row.email[0]} />
+                  <LetterCircle letter={row.email ? row.email[0] : "A"} />
                   <p
                     style={{
                       margin: 0,
@@ -41,15 +56,16 @@ function App() {
             key: "actionName",
           },
           {
-            key: "occured_at",
+            key: "occurred_at",
             parser: (value) => {
-              return value.split("T")[0];
+              return value ? value.split("T")[0] : value;
             },
           },
         ]}
-        rows={rows}
+        rows={fetchedRows}
         DetailsComponent={DetailsComponent}
       />
+      <p style={{ textAlign: "center",padding:"10px" }}>@Instalog</p>
     </>
   );
 }
