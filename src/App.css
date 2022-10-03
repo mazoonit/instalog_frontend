@@ -12,10 +12,10 @@ body,
   width: 100%;
   height: 100%;
   margin: 0;
-  padding: 0;
+  padding: 5px;
 }
 body {
-  background: #f3f3f3;
+  background: #fff;
   position: fixed;
   font-family: "roboto";
 }

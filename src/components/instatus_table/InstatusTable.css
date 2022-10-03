@@ -1,0 +1,90 @@
+.headerRow > .headerElement {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.headerRow > .headerElement ~ .headerElement {
+  border-radius: 0;
+}
+.headerElement {
+  display: inline-block;
+}
+.headerElement input {
+  background-color: transparent;
+}
+.filterButton {
+  transition: 0.4s;
+  border: 1px solid #ccc;
+  border-left: 0;
+  font-size: 13px;
+  cursor: pointer;
+  color: #616161;
+}
+.filterButton:focus {
+  outline: 0;
+}
+#filter {
+  padding: 13px;
+}
+.row {
+  width: 80%;
+  background-color: #fff;
+  margin: auto;
+  padding: 15px;
+  border-left: 1px solid #f3f3f3;
+  border-right: 1px solid #f3f3f3;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: stretch;
+  flex-wrap: wrap;
+}
+.filterButton {
+  padding: 8px;
+}
+.d {
+  width: 300px;
+  height: 40px;
+  display: block;
+  transition: 0.5s;
+  z-index: 1;
+  margin: auto;
+  padding: 15px;
+  cursor: pointer;
+}
+.colHeader {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  margin-top: 15px;
+  margin-right: auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: #616161;
+}
+.d:hover {
+  padding: 10px;
+  /*
+	height: 40px;
+	z-index: 2;
+	width: 350px;
+	*/
+}
+.accc {
+  height: 100px;
+  margin-top: 0;
+  padding: 0;
+  width: 350px;
+  transition: 0.5s;
+  border-radius: 5px;
+  border: solid 0.5px #ccc;
+}
+input {
+  padding: 13px;
+  outline: 0;
+  width: 100%;
+  border: 0;
+  transition: 0.4s;
+}
+input:focus {
+  outline: 0;
+}
