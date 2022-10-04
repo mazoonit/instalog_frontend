@@ -1,6 +1,7 @@
-const TitledAttribute = ({ title, value,fontSize }) => {
-  if(!fontSize){
-    fontSize="13px";
+import "./DetailsComponent.css";
+const TitledAttribute = ({ title, value, fontSize }) => {
+  if (!fontSize) {
+    fontSize = "13px";
   }
   return (
     <dev>
@@ -14,7 +15,7 @@ const TitledAttribute = ({ title, value,fontSize }) => {
       >
         {title}
       </p>
-      <p style={{ display: "inline-block",fontSize:fontSize }}> {value}</p>
+      <p style={{ display: "inline-block", fontSize: fontSize }}> {value}</p>
     </dev>
   );
 };
@@ -25,19 +26,8 @@ export default function DetailsComponent({ row }) {
     return <p style={{ color: titleColor, fontWeight: fontWeight }}>{title}</p>;
   };
   return (
-    <dev
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-        alignContent: "stretch",
-        flexWrap: "wrap",
-        alignContent: "flex-start",
-        width: "100%",
-        padding: "10px",
-      }}
-    >
-      <dev style={{ display: "flex", flexDirection: "column", width: "33%" }}>
+    <dev id="detailsComponent">
+      <dev className="detailsComponentParagraph">
         <Title title="ACTOR" />
         <TitledAttribute
           title={"Name"}
@@ -53,7 +43,7 @@ export default function DetailsComponent({ row }) {
           value={row.actor ? row.actor.id : null}
         />
       </dev>
-      <dev style={{ display: "flex", flexDirection: "column", width: "33%" }}>
+      <dev className="detailsComponentParagraph">
         <Title title="ACTION" />
         <TitledAttribute
           title={"Name"}
@@ -66,22 +56,22 @@ export default function DetailsComponent({ row }) {
           fontSize={"10px"}
         />
       </dev>
-      <dev style={{ display: "flex", flexDirection: "column", width: "33%" }}>
+      <dev className="detailsComponentParagraph">
         <Title title="DATE" />
         <TitledAttribute
           title={"DATE"}
           value={row.occurred_at ? row.occurred_at.split("T")[0] : null}
         />
       </dev>
-      <dev style={{ display: "flex", flexDirection: "column", width: "33%" }}>
+      <dev className="detailsComponentParagraph">
         <Title title="METADATA" />
         <div class="block"></div>
       </dev>
-      <dev style={{ display: "flex", flexDirection: "column", width: "33%" }}>
+      <dev className="detailsComponentParagraph">
         <Title title="TARGET" />
         <div class="block"></div>
       </dev>
-      <dev style={{ width: "33%" }}></dev>
+      <dev className="detailsComponentParagraph"></dev>
     </dev>
   );
 }

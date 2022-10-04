@@ -1,3 +1,4 @@
+import "./styles/footer.css";
 export default function Footer({ loadMore }) {
   return (
     <dev

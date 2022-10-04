@@ -49,7 +49,7 @@ function Instalog() {
 
   //on mount fetch the data
   useEffect(() => {
-    fetch({});
+    loadData({});
   }, []);
 
   //utilties
@@ -70,7 +70,7 @@ function Instalog() {
   };
 
   //Fetch function
-  const fetch = async ({ searchValue, concatFlag, filters }) => {
+  const loadData = async ({ searchValue, concatFlag, filters }) => {
     try {
       //constructing
       let constructedFetchParameters = {};
@@ -95,6 +95,7 @@ function Instalog() {
       toast.error("Fetching problem!");
     }
   };
+
   const search = async ({ searchValue }) => {
     try {
       const constructedFetchParameters = {
@@ -113,7 +114,7 @@ function Instalog() {
   };
 
   const loadMore = async () => {
-    await fetch({ concatFlag: true });
+    await loadData({ concatFlag: true });
   };
   return (
     <>

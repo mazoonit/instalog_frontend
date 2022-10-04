@@ -9,6 +9,7 @@ export default function Row({
   DetailsComponent,
 }) {
   let className = "row ";
+
   useEffect(() => {
     if (isActive) {
       className = "row active";
@@ -16,10 +17,13 @@ export default function Row({
       className = "row";
     }
   }, [isActive]);
+
   if (isActive == true) {
     className = "row active";
   }
+
   let width = 100 / columns.length + "%";
+  
   return (
     <dev
       className={className}

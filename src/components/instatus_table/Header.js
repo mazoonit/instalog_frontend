@@ -1,41 +1,25 @@
+import "./styles/header.css";
 export default function Header({ headers, fetch, search }) {
   return (
-    <dev
-      style={{
-        backgroundColor: "#F5F5F5",
-        width: "80%",
-        display: "block",
-        margin: "auto",
-        borderTopLeftRadius: "10px",
-        borderTopRightRadius: "10px",
-        padding: "20px",
-        paddingBottom: "10px",
-        textAlign: "center",
-      }}
-      className="headerRow"
-    >
+    <dev id="headerRow">
       <input
+        id="headerSearchInput"
         class="headerElement"
-        style={{
-          width: "70%",
-          background: "transparent",
-          border: "1px solid #ccc",
-        }}
         placeholder={"Search"}
         onChange={(e) => {
           let searchValue = e.target.value;
           search({ searchValue: searchValue });
         }}
       />
-      <button class="headerElement filterButton" id="filter">
+      <button class="headerElement headerButton" id="filter">
         <i class="fa-solid fa-filter"></i> Filters
       </button>
-      <button class="headerElement filterButton" id="filter">
+      <button class="headerElement headerButton" id="export">
         <i class="fa-solid fa-download"></i> Export
       </button>
       <button
-        class="headerElement filterButton"
-        id="filter"
+        class="headerElement headerButton"
+        id="live"
         style={{
           borderTopRightRadius: "5px",
           borderBottomRightRadius: "5px",
@@ -43,17 +27,7 @@ export default function Header({ headers, fetch, search }) {
       >
         <i class="fa-solid fa-circle" style={{ color: "purple" }}></i> Live
       </button>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignContent: "stretch",
-          flexWrap: "wrap",
-          alignContent: "flex-start",
-          paddingLeft: "10px",
-        }}
-      >
+      <div id="tableHeaders">
         {headers
           ? headers.map((header) => {
               return <p class="colHeader">{header}</p>;
