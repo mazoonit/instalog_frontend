@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const request = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "http://167.99.205.232:5000",
   headers: {
     "Content-Type": "application/json",
     crossdomain: true,
