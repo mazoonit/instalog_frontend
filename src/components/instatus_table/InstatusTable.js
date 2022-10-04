@@ -7,12 +7,15 @@ export default function InstatusTable({
   rows,
   columns,
   DetailsComponent,
+  loadMore,
+  fetch,
+  search,
 }) {
   return (
     <div>
-      <Header headers={headers} />
+      <Header headers={headers} fetch={fetch} search={search} />
       <Rows rows={rows} columns={columns} DetailsComponent={DetailsComponent} />
-      <Footer />
+      <Footer loadMore={loadMore} />
     </div>
   );
 }

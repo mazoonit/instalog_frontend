@@ -22,6 +22,9 @@
 .filterButton:focus {
   outline: 0;
 }
+.filterButton:hover {
+  color: #111;
+}
 #filter {
   padding: 13px;
 }
@@ -81,7 +84,7 @@
   padding: 14px;
   font-weight: bolder;
   font-size: 14px;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   color: #616161;
 }
 .footer:hover {

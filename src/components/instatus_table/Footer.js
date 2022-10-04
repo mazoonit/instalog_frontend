@@ -1,6 +1,11 @@
-export default function Footer() {
+export default function Footer({ loadMore }) {
   return (
-    <dev className="footer">
+    <dev
+      className="footer"
+      onClick={() => {
+        loadMore();
+      }}
+    >
       <p>LOAD MORE</p>
     </dev>
   );

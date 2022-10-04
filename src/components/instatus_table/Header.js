@@ -1,4 +1,4 @@
-export default function Header({ headers }) {
+export default function Header({ headers, fetch, search }) {
   return (
     <dev
       style={{
@@ -14,48 +14,52 @@ export default function Header({ headers }) {
       }}
       className="headerRow"
     >
-        <input
-          class="headerElement"
-          style={{
-            width: "70%",
-            background: "transparent",
-            border: "1px solid #ccc",
-          }}
-          placeholder={"Search"}
-        />
-        <button class="headerElement filterButton" id="filter">
-          <i class="fa-solid fa-filter"></i> Filters
-        </button>
-        <button class="headerElement filterButton" id="filter">
-          <i class="fa-solid fa-download"></i> Export
-        </button>
-        <button
-          class="headerElement filterButton"
-          id="filter"
-          style={{
-            borderTopRightRadius: "5px",
-            borderBottomRightRadius: "5px",
-          }}
-        >
-          <i class="fa-solid fa-circle" style={{ color: "purple" }}></i> Live
-        </button>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-around",
-            alignContent: "stretch",
-            flexWrap: "wrap",
-            alignContent: "flex-start",
-            paddingLeft: "10px",
-          }}
-        >
-          {headers
-            ? headers.map((header) => {
-                return <p class="colHeader">{header}</p>;
-              })
-            : null}
-        </div>
+      <input
+        class="headerElement"
+        style={{
+          width: "70%",
+          background: "transparent",
+          border: "1px solid #ccc",
+        }}
+        placeholder={"Search"}
+        onChange={(e) => {
+          let searchValue = e.target.value;
+          search({ searchValue: searchValue });
+        }}
+      />
+      <button class="headerElement filterButton" id="filter">
+        <i class="fa-solid fa-filter"></i> Filters
+      </button>
+      <button class="headerElement filterButton" id="filter">
+        <i class="fa-solid fa-download"></i> Export
+      </button>
+      <button
+        class="headerElement filterButton"
+        id="filter"
+        style={{
+          borderTopRightRadius: "5px",
+          borderBottomRightRadius: "5px",
+        }}
+      >
+        <i class="fa-solid fa-circle" style={{ color: "purple" }}></i> Live
+      </button>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignContent: "stretch",
+          flexWrap: "wrap",
+          alignContent: "flex-start",
+          paddingLeft: "10px",
+        }}
+      >
+        {headers
+          ? headers.map((header) => {
+              return <p class="colHeader">{header}</p>;
+            })
+          : null}
+      </div>
     </dev>
   );
 }
