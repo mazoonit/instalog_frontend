@@ -65,6 +65,7 @@ function Instalog() {
       //return
       return res.data;
     } catch (error) {
+      console.log(error);
       toast.error("Fetching problem!");
     }
   };
