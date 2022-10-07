@@ -9,16 +9,10 @@ export default function LetterCircle({ letter }) {
           letterHexa * Math.random()
         }deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)`,
 
-        borderRadius: "50%",
-        height: "30px",
-        width: "30px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        alignSelf: "center",
         backgroundClip: "text",
         textFillColor: "transparent",
       }}
+      className="text-center lg:text-justify mx-auto lg:mx-0 flex self-center justify-center items-center w-[30px] h-[30px] rounded-full "
     >
       <strong>
         <p style={{ color: "#fff" }}>{letter ? letter.toUpperCase() : "A"}</p>

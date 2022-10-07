@@ -11,11 +11,7 @@ const columns = [
     CustomComponent: (row) => {
       return (
         <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            width: "33.333%",
-          }}
+          className="text-center mx-auto lg:flex lg:flex-row lg:w-1/3"
         >
           <LetterCircle letter={row.email ? row.email[0] : "A"} />
           <p
@@ -62,6 +58,7 @@ function Instalog() {
         row.email = row.actor ? row.actor.email : null;
         row.actionName = row.action ? row.action.name : null;
       });
+      console.log(requestParams);
       //return
       return res.data;
     } catch (error) {

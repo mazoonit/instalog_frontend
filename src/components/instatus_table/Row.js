@@ -8,22 +8,25 @@ export default function Row({
   row,
   DetailsComponent,
 }) {
-  let className = "row ";
-
+  let rowClasses =
+    "w-4/5 mx-auto text-center lg:text-justify p-4 lg:border-[#f0f0f0] lg:border-0 lg:border-x self-center lg:flex lg:flex-row lg:flex-wrap lg:justify-around lg:items-stretch lg:content-start cursor-pointer pl-5 duration-2000 text-sm hover:bg-[#f3f3f3]";
+  let activeClasses =
+    "w-[82%] h-[220px] lg:border lg:border-[#dfdfdf] lg:rounded-lg hover:bg-[#fff]";
+  let className = rowClasses;
   useEffect(() => {
     if (isActive) {
-      className = "row active";
+      className = rowClasses + " " + activeClasses;
     } else {
-      className = "row";
+      className = rowClasses;
     }
   }, [isActive]);
 
   if (isActive == true) {
-    className = "row active";
+    className = rowClasses + " " + activeClasses;
   }
 
   let width = 100 / columns.length + "%";
-  
+
   return (
     <dev
       className={className}
@@ -47,13 +50,13 @@ export default function Row({
                 } else {
                   if (col.parser) {
                     return (
-                      <dev style={{ width: width }}>
+                      <dev style={{ width: width }} className="self-center">
                         <p>{col.parser(row[col.key])}</p>
                       </dev>
                     );
                   }
                   return (
-                    <dev style={{ width: width }}>
+                    <dev style={{ width: width }} className="self-center">
                       <p>{row[col.key]}</p>
                     </dev>
                   );
