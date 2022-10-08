@@ -6,7 +6,7 @@
  *
  *
  */
-
+import { dateParser } from "./utilities";
 const TitledAttribute = ({ title, value, fontSize }) => {
   if (!fontSize) {
     fontSize = "13px";
@@ -88,8 +88,8 @@ export default function DetailsComponent({ row }) {
           <Title title="DATE" />
           <table>
             <TitledAttribute
-              title={"DATE"}
-              value={row.occurred_at ? row.occurred_at.split("T")[0] : null}
+              title={"Readable"}
+              value={dateParser(row.occurred_at)}
             />
           </table>
         </div>
