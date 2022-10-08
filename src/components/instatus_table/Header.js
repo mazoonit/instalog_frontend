@@ -17,6 +17,22 @@ export default function Header({ headers, fetch, search, parsedRows }) {
       <button class={basicInputClasses}>
         <i class="fa-solid fa-filter"></i> Filters
       </button>
+      {/**
+       * We can do a little parsing, but I'm just prototyping.
+       */}
+      <CSVLink
+        data={parsedRows}
+        headers={[
+          { label: "event_id", key: "id" },
+          { label: "action", key: "actionName" },
+          { label: "date", key: "occurred_at" },
+        ]}
+        filename={"instatus-instalog.csv"}
+        className={basicInputClasses}
+        target="_blank"
+      >
+        <i class="fa-solid fa-download"></i> Export
+      </CSVLink>
       <button class={basicInputClasses + " lg:rounded-tr-lg lg:rounded-br-lg"}>
         <i class="fa-solid fa-circle" style={{ color: "purple" }}></i> Live
       </button>
