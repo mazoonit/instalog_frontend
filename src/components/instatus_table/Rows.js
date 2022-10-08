@@ -6,6 +6,7 @@ export default function Rows({ rows, columns, DetailsComponent }) {
     ? rows.map((row, index) => {
         return (
           <Row
+            key={index}
             row={row}
             columns={columns}
             isActive={index == activeIndex}

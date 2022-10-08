@@ -8,12 +8,14 @@ export default function Row({
   row,
   DetailsComponent,
 }) {
+  //tailwind hell ? :"
   let rowClasses =
     "w-4/5 mx-auto text-center lg:text-justify p-4 lg:border-[#f0f0f0] lg:border-0 lg:border-x self-center lg:flex lg:flex-row lg:flex-wrap lg:justify-around lg:items-stretch lg:content-start cursor-pointer pl-5 duration-3300 text-sm hover:bg-[#f3f3f3]";
   let activeClasses =
-    "w-[82%] h-[220px] lg:border lg:border-[#dfdfdf] lg:rounded-lg hover:bg-[#fff]";
+    "w-[82%] h-[500px] lg:h-[220px] lg:border lg:border-[#dfdfdf] lg:rounded-lg hover:bg-[#fff]";
   let className = rowClasses;
 
+  //details active class watcher
   useEffect(() => {
     if (isActive) {
       className = rowClasses + " " + activeClasses;
@@ -22,14 +24,16 @@ export default function Row({
     }
   }, [isActive]);
 
+  //for pre isActive
   if (isActive == true) {
     className = rowClasses + " " + activeClasses;
   }
 
-  let width = 100 / columns.length + "%";
+  //calculating width of col
+  let width = (100 / columns.length).toFixed(0) + "%";
 
   return (
-    <dev
+    <div
       className={className}
       onClick={() => {
         setActiveIndex(index);
@@ -45,27 +49,27 @@ export default function Row({
       ) : (
         <>
           {columns
-            ? columns.map((col) => {
+            ? columns.map((col, index) => {
                 if (col.CustomComponent) {
                   return col.CustomComponent(row);
                 } else {
                   if (col.parser) {
                     return (
-                      <dev style={{ width: width }} className="self-center">
+                      <div className={`self-center mx-auto lg:w-[${width}]`}>
                         <p>{col.parser(row[col.key])}</p>
-                      </dev>
+                      </div>
                     );
                   }
                   return (
-                    <dev style={{ width: width }} className="self-center">
+                    <div className={`self-center mx-auto lg:w-[${width}]`}>
                       <p>{row[col.key]}</p>
-                    </dev>
+                    </div>
                   );
                 }
               })
             : null}
         </>
       )}
-    </dev>
+    </div>
   );
 }

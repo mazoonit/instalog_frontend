@@ -2,7 +2,7 @@ import "./styles/footer.css";
 import Loader from "./Loader";
 export default function Footer({ loadMore, isLoadingMore, isReachingEnd }) {
   return (
-    <dev
+    <div
       className="footer"
       onClick={() => {
         if (!isLoadingMore && !isReachingEnd) {
@@ -17,6 +17,6 @@ export default function Footer({ loadMore, isLoadingMore, isReachingEnd }) {
       ) : (
         <p>LOAD MORE</p>
       )}
-    </dev>
+    </div>
   );
 }

@@ -1,37 +1,56 @@
 //import "./DetailsComponent.css";
+/**
+ *
+ * Titled Attritube Component
+ * key value in shape of -> x : y
+ *
+ *
+ */
+
 const TitledAttribute = ({ title, value, fontSize }) => {
   if (!fontSize) {
     fontSize = "13px";
   }
   return (
-    <tr>
-      <td>
-        <p className="mr-[10px] text-[#929292] text-sm">{title}</p>
-      </td>
-      <td>
-        <p className="text-sm"> {value}</p>
-      </td>
-    </tr>
+    <>
+      <thead></thead>
+      <tbody>
+        <tr>
+          <td>
+            <p className="mr-[10px] text-[#929292] text-sm">{title}</p>
+          </td>
+          <td>
+            <p className="text-sm"> {value}</p>
+          </td>
+        </tr>
+      </tbody>
+    </>
   );
 };
-export default function DetailsComponent({ row }) {
+
+/**
+ *
+ * Title Component
+ */
+const Title = ({ title }) => {
   const titleColor = "#929292";
   const fontWeight = 500;
-  const Title = ({ title }) => {
-    return (
-      <p
-        style={{ color: titleColor, fontWeight: fontWeight }}
-        className="mb-[10px] text-center lg:text-justify"
-      >
-        {title}
-      </p>
-    );
-  };
+  return (
+    <p
+      style={{ color: titleColor, fontWeight: fontWeight }}
+      className="mb-[10px] text-center lg:text-justify"
+    >
+      {title}
+    </p>
+  );
+};
+
+export default function DetailsComponent({ row }) {
   let detailsComponentParagraphClasses =
     "flex flex-col w-[100%] lg:w-[33%] text-justify";
   return (
-    <dev className="flex flex-row justify-around items-stretch flex-wrap content-start w-[100%] p-2.5">
-      <dev className={detailsComponentParagraphClasses}>
+    <div className="flex flex-row justify-around items-stretch flex-wrap content-start w-[100%] p-2.5">
+      <div className={detailsComponentParagraphClasses}>
         <Title title="ACTOR" />
         <table className="mx-auto lg:mx-0">
           <TitledAttribute
@@ -48,8 +67,8 @@ export default function DetailsComponent({ row }) {
             value={row.actor ? row.actor.id : null}
           />
         </table>
-      </dev>
-      <dev className={detailsComponentParagraphClasses}>
+      </div>
+      <div className={detailsComponentParagraphClasses}>
         <Title title="ACTION" />
         <table className="mx-auto lg:mx-0">
           <TitledAttribute
@@ -63,25 +82,27 @@ export default function DetailsComponent({ row }) {
             fontSize={"10px"}
           />
         </table>
-      </dev>
-      <dev className={detailsComponentParagraphClasses}>
-        <dev className="mx-auto lg:mx-0">
+      </div>
+      <div className={detailsComponentParagraphClasses}>
+        <div className="mx-auto lg:mx-0">
           <Title title="DATE" />
-          <TitledAttribute
-            title={"DATE"}
-            value={row.occurred_at ? row.occurred_at.split("T")[0] : null}
-          />
-        </dev>
-      </dev>
-      <dev className={detailsComponentParagraphClasses+' mt-[7px]'}>
+          <table>
+            <TitledAttribute
+              title={"DATE"}
+              value={row.occurred_at ? row.occurred_at.split("T")[0] : null}
+            />
+          </table>
+        </div>
+      </div>
+      <div className={detailsComponentParagraphClasses + " mt-[7px]"}>
         <Title title="METADATA" />
-        <div class="block w-[70%] h-[15px] bg-[#f5f5f5]"></div>
-      </dev>
-      <dev className={detailsComponentParagraphClasses+' mt-[7px]'}>
+        <div className="block w-[70%] h-[15px] bg-[#f5f5f5]"></div>
+      </div>
+      <div className={detailsComponentParagraphClasses + " mt-[7px]"}>
         <Title title="TARGET" />
-        <div class="block w-[70%] h-[15px] bg-[#f5f5f5]"></div>
-      </dev>
-      <dev className={detailsComponentParagraphClasses}></dev>
-    </dev>
+        <div className="block w-[70%] h-[15px] bg-[#f5f5f5]"></div>
+      </div>
+      <div className={detailsComponentParagraphClasses}></div>
+    </div>
   );
 }

@@ -14,12 +14,17 @@ const fetcher = async (url) => {
 };
 
 function Instalog() {
+  //search state
   const [searchState, setSearchState] = useState("");
 
+  // infinte loading
   const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
     (index) => `/events?pageNumber=${index + 1}&searchValue=${searchState}`,
     fetcher
   );
+
+  // pagination variables
+
   const logs = data ? [].concat(...data) : [];
   const isLoadingInitialData = !data && !error;
   const isLoadingMore =
@@ -30,6 +35,8 @@ function Instalog() {
     isEmpty || (data && data[data.length - 1]?.length < PAGE_SIZE);
   const isRefreshing = isValidating && data && data.length === size;
 
+  //searching and load more functionalities
+
   const search = async ({ searchValue }) => {
     setSize(1);
     setSearchState(searchValue);
@@ -38,6 +45,7 @@ function Instalog() {
   const loadMore = async () => {
     setSize(size + 1);
   };
+
 
   return (
     <>
@@ -63,4 +71,5 @@ function Instalog() {
     </>
   );
 }
+
 export default Instalog;
