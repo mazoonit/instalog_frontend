@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Rows from "./Rows";
 import Footer from "./Footer";
-import "./styles/instatusTable.css";
+//import "./styles/instatusTable.css";
 export default function InstatusTable({
   headers,
   rows,

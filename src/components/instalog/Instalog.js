@@ -1,94 +1,65 @@
 import React, { useRef, useState, useEffect, useReducer } from "react";
 import InstatusTable from "../instatus_table/InstatusTable";
-import LetterCircle from "../generic_components/LetterCircle";
 import DetailsComponent from "./DetailsComponent";
-import { rows } from "../../dumpData/dump";
 import API from "../../utilities/api";
 import { toast } from "react-toastify";
-const columns = [
-  {
-    key: "icon",
-    CustomComponent: (row) => {
-      return (
-        <div
-          className="text-center mx-auto lg:flex lg:flex-row lg:w-1/3"
-        >
-          <LetterCircle letter={row.email ? row.email[0] : "A"} />
-          <p
-            style={{
-              margin: 0,
-              marginLeft: "10px",
-              alignSelf: "center",
-            }}
-          >
-            {row.email}
-          </p>
-        </div>
-      );
-    },
-  },
-  {
-    key: "actionName",
-  },
-  {
-    key: "occurred_at",
-    parser: (value) => {
-      return value ? value.split("T")[0] : value;
-    },
-  },
-];
+import useSWR from "swr";
+import { columns } from "./columns";
+import { parseQuery } from "./utilities";
 
 function Instalog() {
   const [fetchedRows, setFetchedRows] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [searchState, setSearchState] = useState("");
+  const [query, setQuery] = useState("");
+
+  const fetcher = async (url, args) => {
+    /**
+     * Fetching
+     */
+    let parsedQuery = parseQuery(url ? url.split("?")[1] : "");
+    let { data } = await API.get(url);
+
+    //parsing data
+    data.map((row) => {
+      row.email = row.actor ? row.actor.email : null;
+      row.actionName = row.action ? row.action.name : null;
+    });
+
+    //checking If we should concat or not and handling search logic.
+
+    if (parseInt(parsedQuery.pageNumber) == 1) {
+      setFetchedRows(data);
+      setPageCount(1);
+    } else if (parseInt(parsedQuery.pageNumber) > 1 && data.length > 0) {
+      setFetchedRows((prevValue) => prevValue.concat(data));
+      setPageCount((prevValue) => (prevValue += 1));
+    }
+    setSearchState(parsedQuery.searchValue);
+    return data;
+  };
+
+  const { data } = useSWR(query, fetcher);
 
   //on mount fetch the data
   useEffect(() => {
     loadData({});
   }, []);
 
-  //utilties
-  const fetchAndParse = async ({ requestParams }) => {
-    try {
-      //fetch
-      let res = await API.post("/events/fetch", requestParams);
-      //parse
-      res.data.map((row) => {
-        row.email = row.actor ? row.actor.email : null;
-        row.actionName = row.action ? row.action.name : null;
-      });
-      console.log(requestParams);
-      //return
-      return res.data;
-    } catch (error) {
-      console.log(error);
-      toast.error("Fetching problem!");
-    }
-  };
-
   //Fetch function
-  const loadData = async ({ searchValue, concatFlag, filters }) => {
+  const loadData = async () => {
     try {
       //constructing
-      let constructedFetchParameters = {};
-      constructedFetchParameters.pageNumber = pageCount + 1;
-      constructedFetchParameters.searchValue = searchState;
-      //api call
-      let data = await fetchAndParse({
-        requestParams: constructedFetchParameters,
-      });
-      if (data.length > 0) {
-        //set rows
-        setFetchedRows((prevValue) => {
-          if (concatFlag) {
-            return prevValue.concat(data);
-          }
-          return data;
-        });
-        //update page count
-        setPageCount((prevValue) => (prevValue += 1));
+      let requestParams = {};
+      requestParams.pageNumber = pageCount + 1;
+      requestParams.searchValue = searchState;
+
+      //constructing query
+      let url = "/events?";
+      for (const key in requestParams) {
+        url += key + "=" + requestParams[key] + "&";
       }
+      setQuery(url);
     } catch (error) {
       toast.error("Fetching problem!");
     }
@@ -96,23 +67,22 @@ function Instalog() {
 
   const search = async ({ searchValue }) => {
     try {
-      const constructedFetchParameters = {
+      const requestParams = {
         searchValue: searchValue,
         pageNumber: 1,
       };
-      let data = await fetchAndParse({
-        requestParams: constructedFetchParameters,
-      });
-      setFetchedRows(data);
-      setPageCount(1);
-      setSearchState(searchValue);
+      let url = "/events?";
+      for (const key in requestParams) {
+        url += key + "=" + requestParams[key] + "&";
+      }
+      setQuery(url);
     } catch (err) {
       toast.error("Fetching problem!");
     }
   };
 
   const loadMore = async () => {
-    await loadData({ concatFlag: true });
+    await loadData();
   };
   return (
     <>
@@ -124,7 +94,6 @@ function Instalog() {
         loadMore={loadMore}
         DetailsComponent={DetailsComponent}
       />
-      <p style={{ textAlign: "center", padding: "10px" }}>@Instalog</p>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import "./styles/header.css";
+//import "./styles/header.css";
 export default function Header({ headers, fetch, search }) {
   const basicInputClasses =
     "block text-center mx-auto mt-1 lg:inline-block rounded-lg lg:rounded-none border border-[#ccc] lg:border-l-0 p-[12px] text-sm focus:outline-0 text-[#616161] hover:text-[#111] duration-300";

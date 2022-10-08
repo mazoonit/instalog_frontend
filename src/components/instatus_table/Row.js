@@ -13,6 +13,7 @@ export default function Row({
   let activeClasses =
     "w-[82%] h-[220px] lg:border lg:border-[#dfdfdf] lg:rounded-lg hover:bg-[#fff]";
   let className = rowClasses;
+
   useEffect(() => {
     if (isActive) {
       className = rowClasses + " " + activeClasses;
@@ -20,6 +21,7 @@ export default function Row({
       className = rowClasses;
     }
   }, [isActive]);
+  
 
   if (isActive == true) {
     className = rowClasses + " " + activeClasses;

@@ -1,4 +1,4 @@
-import "./DetailsComponent.css";
+//import "./DetailsComponent.css";
 const TitledAttribute = ({ title, value, fontSize }) => {
   if (!fontSize) {
     fontSize = "13px";
@@ -21,19 +21,19 @@ export default function DetailsComponent({ row }) {
     return (
       <p
         style={{ color: titleColor, fontWeight: fontWeight }}
-        className="mb-[10px]"
+        className="mb-[10px] text-center lg:text-justify"
       >
         {title}
       </p>
     );
   };
   let detailsComponentParagraphClasses =
-    "lg:flex lg:flex-col w-[100%] lg:w-[33%] text-center lg:text-justify";
+    "flex flex-col w-[100%] lg:w-[33%] text-justify";
   return (
     <dev className="flex flex-row justify-around items-stretch flex-wrap content-start w-[100%] p-2.5">
       <dev className={detailsComponentParagraphClasses}>
         <Title title="ACTOR" />
-        <table>
+        <table className="mx-auto lg:mx-0">
           <TitledAttribute
             title={"Name"}
             value={row.actor ? row.actor.name : null}
@@ -51,7 +51,7 @@ export default function DetailsComponent({ row }) {
       </dev>
       <dev className={detailsComponentParagraphClasses}>
         <Title title="ACTION" />
-        <table>
+        <table className="mx-auto lg:mx-0">
           <TitledAttribute
             title={"Name"}
             value={row.action ? row.action.name : null}
@@ -65,11 +65,13 @@ export default function DetailsComponent({ row }) {
         </table>
       </dev>
       <dev className={detailsComponentParagraphClasses}>
-        <Title title="DATE" />
-        <TitledAttribute
-          title={"DATE"}
-          value={row.occurred_at ? row.occurred_at.split("T")[0] : null}
-        />
+        <dev className="mx-auto lg:mx-0">
+          <Title title="DATE" />
+          <TitledAttribute
+            title={"DATE"}
+            value={row.occurred_at ? row.occurred_at.split("T")[0] : null}
+          />
+        </dev>
       </dev>
       <dev className={detailsComponentParagraphClasses}>
         <Title title="METADATA" />
