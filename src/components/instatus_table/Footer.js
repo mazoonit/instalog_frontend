@@ -1,13 +1,22 @@
 import "./styles/footer.css";
-export default function Footer({ loadMore }) {
+import Loader from "./Loader";
+export default function Footer({ loadMore, isLoadingMore, isReachingEnd }) {
   return (
     <dev
       className="footer"
       onClick={() => {
-        loadMore();
+        if (!isLoadingMore && !isReachingEnd) {
+          loadMore();
+        }
       }}
     >
-      <p>LOAD MORE</p>
+      {isLoadingMore ? (
+        <Loader />
+      ) : isReachingEnd ? (
+        <p>NO MORE LOGS!</p>
+      ) : (
+        <p>LOAD MORE</p>
+      )}
     </dev>
   );
 }

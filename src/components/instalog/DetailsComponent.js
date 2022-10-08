@@ -73,13 +73,13 @@ export default function DetailsComponent({ row }) {
           />
         </dev>
       </dev>
-      <dev className={detailsComponentParagraphClasses}>
+      <dev className={detailsComponentParagraphClasses+' mt-[7px]'}>
         <Title title="METADATA" />
-        <div class=""></div>
+        <div class="block w-[70%] h-[15px] bg-[#f5f5f5]"></div>
       </dev>
-      <dev className={detailsComponentParagraphClasses}>
+      <dev className={detailsComponentParagraphClasses+' mt-[7px]'}>
         <Title title="TARGET" />
-        <div class=""></div>
+        <div class="block w-[70%] h-[15px] bg-[#f5f5f5]"></div>
       </dev>
       <dev className={detailsComponentParagraphClasses}></dev>
     </dev>

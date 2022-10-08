@@ -9,7 +9,7 @@ export default function Row({
   DetailsComponent,
 }) {
   let rowClasses =
-    "w-4/5 mx-auto text-center lg:text-justify p-4 lg:border-[#f0f0f0] lg:border-0 lg:border-x self-center lg:flex lg:flex-row lg:flex-wrap lg:justify-around lg:items-stretch lg:content-start cursor-pointer pl-5 duration-2000 text-sm hover:bg-[#f3f3f3]";
+    "w-4/5 mx-auto text-center lg:text-justify p-4 lg:border-[#f0f0f0] lg:border-0 lg:border-x self-center lg:flex lg:flex-row lg:flex-wrap lg:justify-around lg:items-stretch lg:content-start cursor-pointer pl-5 duration-3300 text-sm hover:bg-[#f3f3f3]";
   let activeClasses =
     "w-[82%] h-[220px] lg:border lg:border-[#dfdfdf] lg:rounded-lg hover:bg-[#fff]";
   let className = rowClasses;
@@ -21,7 +21,6 @@ export default function Row({
       className = rowClasses;
     }
   }, [isActive]);
-  
 
   if (isActive == true) {
     className = rowClasses + " " + activeClasses;

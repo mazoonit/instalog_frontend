@@ -1,5 +1,7 @@
 //import "./styles/header.css";
-export default function Header({ headers, fetch, search }) {
+import { CSVLink } from "react-csv";
+
+export default function Header({ headers, fetch, search, parsedRows }) {
   const basicInputClasses =
     "block text-center mx-auto mt-1 lg:inline-block rounded-lg lg:rounded-none border border-[#ccc] lg:border-l-0 p-[12px] text-sm focus:outline-0 text-[#616161] hover:text-[#111] duration-300";
   return (
@@ -15,10 +17,7 @@ export default function Header({ headers, fetch, search }) {
       <button class={basicInputClasses}>
         <i class="fa-solid fa-filter"></i> Filters
       </button>
-      <button class={basicInputClasses}>
-        <i class="fa-solid fa-download"></i> Export
-      </button>
-      <button class={basicInputClasses+" lg:rounded-tr-lg lg:rounded-br-lg"}>
+      <button class={basicInputClasses + " lg:rounded-tr-lg lg:rounded-br-lg"}>
         <i class="fa-solid fa-circle" style={{ color: "purple" }}></i> Live
       </button>
       <div className="flex flex-row justify-around items-stretch flex-wrap content-start mt-4 ml-1">
